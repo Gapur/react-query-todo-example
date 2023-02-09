@@ -1,23 +1,31 @@
-import React from 'react';
+import { useState } from "react";
 
-function App() {
+import { TodoForm } from "./todo-form";
+import { TodoList } from "./todo-list";
+
+export function App() {
+  const [todos, setTodos] = useState<string[]>([]);
+  const [todo, setTodo] = useState("");
+
+  const addTodo = () => {
+    if (todo !== "") {
+      setTodos([...todos, todo]);
+      setTodo("");
+    }
+  };
+
+  const deleteTodo = (text: string) => {
+    const newTodos = todos.filter((todo) => {
+      return todo !== text;
+    });
+    setTodos(newTodos);
+  };
+
   return (
     <div>
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>React Todo App</h1>
+      <TodoForm todo={todo} setTodo={setTodo} addTodo={addTodo} />
+      <TodoList list={todos} remove={deleteTodo} />
     </div>
   );
 }
-
-export default App;
