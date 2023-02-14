@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const uuidv4 = require("uuid/v4");
+const { v4: uuidv4 } = require("uuid");
 
 const app = express();
 const port = 8000;
@@ -18,9 +18,9 @@ app.get("/todos", (req, res) => {
 });
 
 app.post("/todos", (req, res) => {
-  const todoText = req.body;
+  const todo = req.body;
 
-  const newTodo = { id: uuidv4(), text: todoText };
+  const newTodo = { id: uuidv4(), text: todo.text };
   console.log(newTodo);
   todos.push(newTodo);
 
