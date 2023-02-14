@@ -1,25 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { TodoForm } from "./todo-form";
 import { TodoList } from "./todo-list";
 
+import { fetchTodos, createTodo, Todo } from "./api";
+
 export function App() {
-  const [todos, setTodos] = useState<string[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
   const [todo, setTodo] = useState("");
 
-  const addTodo = () => {
-    if (todo !== "") {
-      setTodos([...todos, todo]);
-      setTodo("");
+  const getTodos = async () => {
+    try {
+      const todosData = await fetchTodos();
+      setTodos(todosData);
+      console.log("todo", todosData);
+    } catch (e) {
+      console.log(e);
     }
   };
 
-  const deleteTodo = (text: string) => {
-    const newTodos = todos.filter((todo) => {
-      return todo !== text;
-    });
-    setTodos(newTodos);
+  useEffect(() => {
+    getTodos();
+  }, []);
+
+  const addTodo = async () => {
+    try {
+      await createTodo(todo);
+    } catch (e) {
+      console.log(e);
+    }
   };
+
+  const deleteTodo = (text: string) => {};
 
   return (
     <div>

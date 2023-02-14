@@ -1,21 +1,24 @@
+import { Todo } from './api';
+
 type TodoListProps = {
-  list: any[];
+  list: Todo[];
   remove: (id: any) => void;
 }
 
 export function TodoList({ list, remove }: TodoListProps) {
+  console.log(list);
   return (
     <>
-      {list?.length > 0 ? (
+      {list.length > 0 ? (
         <ul className="todo-list">
-          {list.map((entry, index) => (
+          {list.map((todo) => (
             <div className="todo">
-              <li key={index}> {entry} </li>
+              <li key={todo.id}> {todo.text} </li>
 
               <button
                 className="delete-button"
                 onClick={() => {
-                  remove(entry);
+                  remove(todo.id);
                 }}
               >
                 Delete
