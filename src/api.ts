@@ -17,10 +17,20 @@ export async function fetchTodos(): Promise<Todo[]> {
   }
 }
 
-export function createTodo(text: string) {
-  return axios.post("/todos", { text });
+export async function createTodo(text: string) {
+  try {
+    await axios.post("/todos", { text });
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
 }
 
-export function deleteTodo(id: string) {
-  return axios.delete(`/todos:${id}`);
+export async function deleteTodo(id: string) {
+  try {
+    await axios.delete(`/todos:${id}`);
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
 }

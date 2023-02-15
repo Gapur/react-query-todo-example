@@ -1,13 +1,11 @@
-import { useState } from "react";
 import { useQuery } from "react-query";
 
-import { TodoForm } from "./todo-form";
+import { NewTodo } from "./new-todo";
 import { TodoList } from "./todo-list";
 
 import { fetchTodos, createTodo, Todo } from "./api";
 
 export function App() {
-  const [todo, setTodo] = useState("");
   const { status, data, error } = useQuery('todos', fetchTodos);
   console.log("🚀 ~ file: App.tsx:12 ~ App ~ data", data);
 
@@ -16,7 +14,7 @@ export function App() {
   }
 
   if (status === 'error') {
-    return <span>{`Error: {error}`}</span>
+    return <span>{`Error: ${error}`}</span>
   }
 
   const deleteTodo = (text: string) => {};
@@ -24,7 +22,7 @@ export function App() {
   return (
     <div>
       <h1>React Todo App</h1>
-      <TodoForm todo={todo} setTodo={setTodo} addTodo={() => {}} />
+      <NewTodo />
       <TodoList list={data} remove={deleteTodo} />
     </div>
   );
