@@ -19,19 +19,12 @@ body {
 }
 
 h1 {
-  font-weight: 300;
-  color: #44c0b6;
-  font-size: 2.5rem;
-  letter-spacing: 0.2rem;
+  color: #47f5e7;
   text-transform: uppercase;
 }
 
 .new-todo {
   margin: 3.5rem;
-}
-
-.todo-list {
-  margin-bottom: 2.5rem;
 }
 
 input {
@@ -55,8 +48,7 @@ input,
 button {
   font-size: 1em;
   appearance: none;
-  color: currentcolor;
-  background: transparent;
+  color: #373535;
   border: 1px solid #828691;
 }
 
@@ -82,7 +74,7 @@ button {
 ul {
   padding: 0;
   list-style: none;
-  margin-bottom: 0px;
+  margin: 0 3.5rem;
 }
 
 li {

@@ -8,7 +8,7 @@ type TodosListProps = {
 export function TodosList({ todos, onDelete }: TodosListProps) {
   if (todos && todos.length > 0) {
     return (
-      <ul className="todo-list">
+      <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
             <span>{todo.text}</span>
