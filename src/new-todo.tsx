@@ -1,12 +1,18 @@
 import { useState } from "react";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 
 import { createTodo } from "./api";
 
 export function NewTodo() {
   const [todo, setTodo] = useState("");
 
-  const { status, error, mutate } = useMutation(createTodo);
+  const queryClient = useQueryClient();
+
+  const { status, error, mutate } = useMutation(createTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('todos');
+    }
+  });
 
   if (status === "loading") {
     return <span>Loading...</span>;

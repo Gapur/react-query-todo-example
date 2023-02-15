@@ -28,7 +28,7 @@ export async function createTodo(text: string) {
 
 export async function deleteTodo(id: string) {
   try {
-    await axios.delete(`/todos:${id}`);
+    await axios.delete(`/todos/${id}`);
   } catch (e) {
     console.log(e);
     throw e;

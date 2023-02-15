@@ -2,7 +2,7 @@ import { Todo } from "./api";
 
 type TodoListProps = {
   list: Todo[] | undefined;
-  remove: (id: any) => void;
+  remove: (id: string) => void;
 };
 
 export function TodoList({ list, remove }: TodoListProps) {

@@ -30,7 +30,7 @@ app.post("/todos", (req, res) => {
 app.delete("/todos/:id", (req, res) => {
   const todoId = req.params.id;
 
-  todos = todos.filter((todo) => todo.id === todoId);
+  todos = todos.filter((todo) => todo.id !== todoId);
 
   res.send("Todo is deleted");
 });
