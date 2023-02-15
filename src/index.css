@@ -9,7 +9,7 @@ body {
   background: #252525;
 }
 
-.App {
+.app {
   padding: 1rem;
   max-width: 50%;
   margin: 0 auto;
@@ -26,18 +26,12 @@ h1 {
   text-transform: uppercase;
 }
 
-.input-wrapper {
+.new-todo {
   margin: 3.5rem;
 }
 
-.todos-wrapper {
+.todo-list {
   margin-bottom: 2.5rem;
-}
-
-.todo {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
 }
 
 input {
@@ -66,21 +60,21 @@ button {
   border: 1px solid #828691;
 }
 
-.add-button {
+.add-btn {
   color: #44c0b6;
   border-left: none;
 }
 
-.add-button:hover {
+.add-btn:hover {
   color: #252525;
   background: #44c0b6;
 }
 
-.delete-button {
+.delete-btn {
   color: #fe6a6a;
 }
 
-.delete-button:hover {
+.delete-btn:hover {
   color: #252525;
   background: #fe6a6a;
 }

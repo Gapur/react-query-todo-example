@@ -1,0 +1,29 @@
+import { Todo } from "../api";
+
+type TodosListProps = {
+  todos: Todo[] | undefined;
+  onDelete: (id: string) => void;
+};
+
+export function TodosList({ todos, onDelete }: TodosListProps) {
+  if (todos && todos.length > 0) {
+    return (
+      <ul className="todo-list">
+        {todos.map((todo) => (
+          <li key={todo.id}>
+            <span>{todo.text}</span>
+            <button className="delete-btn" onClick={() => onDelete(todo.id)}>
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+  
+  return (
+    <div className="empty">
+      <p>No task found</p>
+    </div>
+  );
+}

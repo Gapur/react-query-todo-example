@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 
-import { createTodo } from "./api";
+import { createTodo } from "../api";
 
 export function NewTodo() {
   const [todo, setTodo] = useState("");
@@ -25,18 +25,15 @@ export function NewTodo() {
   const isInputEmpty = todo === '';
 
   return (
-    <div className="input-wrapper">
+    <div className="new-todo">
       <input
         type="text"
-        name="todo"
         value={todo}
         placeholder="Create a new todo"
-        onChange={(e) => {
-          setTodo(e.target.value);
-        }}
+        onChange={(e) => setTodo(e.target.value)}
       />
       <button
-        className="add-button"
+        className="add-btn"
         disabled={isInputEmpty}
         onClick={() => mutate(todo)}
       >
