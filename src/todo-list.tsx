@@ -1,7 +1,7 @@
 import { Todo } from './api';
 
 type TodoListProps = {
-  list: Todo[];
+  list: Todo[] | undefined;
   remove: (id: any) => void;
 }
 
@@ -9,7 +9,7 @@ export function TodoList({ list, remove }: TodoListProps) {
   console.log(list);
   return (
     <>
-      {list.length > 0 ? (
+      {list && list.length > 0 ? (
         <ul className="todo-list">
           {list.map((todo) => (
             <div className="todo">

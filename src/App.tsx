@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useQuery } from "react-query";
 
 import { TodoForm } from "./todo-form";
 import { TodoList } from "./todo-list";
@@ -6,38 +7,25 @@ import { TodoList } from "./todo-list";
 import { fetchTodos, createTodo, Todo } from "./api";
 
 export function App() {
-  const [todos, setTodos] = useState<Todo[]>([]);
   const [todo, setTodo] = useState("");
+  const { status, data, error } = useQuery('todos', fetchTodos);
+  console.log("🚀 ~ file: App.tsx:12 ~ App ~ data", data);
 
-  const getTodos = async () => {
-    try {
-      const todosData = await fetchTodos();
-      setTodos(todosData);
-      console.log("todo", todosData);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  if (status === 'loading') {
+    return <span>Loading...</span>
+  }
 
-  useEffect(() => {
-    getTodos();
-  }, []);
-
-  const addTodo = async () => {
-    try {
-      await createTodo(todo);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  if (status === 'error') {
+    return <span>{`Error: {error}`}</span>
+  }
 
   const deleteTodo = (text: string) => {};
 
   return (
     <div>
       <h1>React Todo App</h1>
-      <TodoForm todo={todo} setTodo={setTodo} addTodo={addTodo} />
-      <TodoList list={todos} remove={deleteTodo} />
+      <TodoForm todo={todo} setTodo={setTodo} addTodo={() => {}} />
+      <TodoList list={data} remove={deleteTodo} />
     </div>
   );
 }
