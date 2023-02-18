@@ -40,8 +40,10 @@ button {
   width: 120px;
   padding: 0.8em;
   cursor: pointer;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.1rem;
+  background: #47f5e7;
+  color: #373535;
 }
 
 input,
@@ -53,22 +55,12 @@ button {
 }
 
 .add-btn {
-  color: #44c0b6;
   border-left: none;
 }
 
-.add-btn:hover {
+button:hover {
   color: #252525;
-  background: #44c0b6;
-}
-
-.delete-btn {
-  color: #fe6a6a;
-}
-
-.delete-btn:hover {
-  color: #252525;
-  background: #fe6a6a;
+  background: #55b0fa;
 }
 
 ul {
@@ -78,7 +70,6 @@ ul {
 }
 
 li {
-  width: 450px;
   padding: 0.85em;
   text-align: left;
   margin-bottom: 0.5rem;
@@ -88,8 +79,10 @@ li {
   border-left: 5px solid #cf972e;
 }
 
-li:last-child {
-  margin-bottom: 0px;
+li span {
+  width: 450px;
+  display: inline-block;
+  color: #fff;
 }
 
 .empty {

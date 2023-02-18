@@ -12,7 +12,7 @@ export function TodosList({ todos, onDelete }: TodosListProps) {
         {todos.map((todo) => (
           <li key={todo.id}>
             <span>{todo.text}</span>
-            <button className="delete-btn" onClick={() => onDelete(todo.id)}>
+            <button onClick={() => onDelete(todo.id)}>
               Delete
             </button>
           </li>
@@ -23,7 +23,7 @@ export function TodosList({ todos, onDelete }: TodosListProps) {
   
   return (
     <div className="empty">
-      <p>No task found</p>
+      <p>No found</p>
     </div>
   );
 }
