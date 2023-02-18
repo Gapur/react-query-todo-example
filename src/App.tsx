@@ -16,11 +16,11 @@ export function App() {
   });
 
   if (status === "loading") {
-    return <span>Loading...</span>;
+    return <div className="loader">Loading...</div>;
   }
 
   if (status === "error") {
-    return <span>{`Error: ${error}`}</span>;
+    return <div className="error">{`Error: ${error}`}</div>;
   }
 
   return (

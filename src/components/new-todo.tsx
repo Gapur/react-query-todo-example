@@ -10,19 +10,15 @@ export function NewTodo() {
 
   const { status, error, mutate } = useMutation(createTodo, {
     onSuccess: () => {
-      queryClient.invalidateQueries('todos');
-    }
+      queryClient.invalidateQueries("todos");
+    },
   });
 
-  if (status === "loading") {
-    return <span>Loading...</span>;
-  }
-
   if (status === "error") {
-    return <span>{`An error has occurred: ${error}`}</span>;
+    return <div className="error">{`An error has occurred: ${error}`}</div>;
   }
 
-  const isInputEmpty = todo === '';
+  const isButtonDisabled = todo === '' || status === "loading";
 
   return (
     <div className="new-todo">
@@ -34,7 +30,7 @@ export function NewTodo() {
       />
       <button
         className="add-btn"
-        disabled={isInputEmpty}
+        disabled={isButtonDisabled}
         onClick={() => mutate(todo)}
       >
         Add

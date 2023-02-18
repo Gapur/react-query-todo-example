@@ -91,3 +91,19 @@ li span {
   color: #cf972e;
   letter-spacing: 0.2rem;
 }
+
+.error {
+  color: #de2323;
+  padding: 1rem;
+}
+
+.loader {
+  width: 50vh;
+  height: 50vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 20px;
+}
