@@ -1,46 +1,108 @@
-# Getting Started with Create React App
+<p align="center">
+  <img src="https://github.com/Gapur/react-native-scanner/blob/main/assets/example.gif" />
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React Query Todo Example
 
-## Available Scripts
+Fetching and manipulating data without using a global state was something out of the ordinary. React Query gives us this opportunity. It has two main functions useQuery and useMutation.
 
-In the project directory, you can run:
+## Introduction to React Query
 
-### `npm start`
+React Query is one of the best libraries for fetching, caching, synchronizing, and updating asynchronous data in your React app. It's super easy to use, zero-config and helps you solve state management issues and control your app's data before it controls you.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+React Query has 3 main concepts:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+    - Queries
+    - Mutations
+    - Query Invalidation
 
-### `npm test`
+First, I want to show you a simple example of using React Query to get data, and then we'll discuss each concept using the example code.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```js
 
-### `npm run build`
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+// this creates the client
+const queryClient = new QueryClient();
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+export default function App() {
+  return (
+    // make the client available everywhere
+    <QueryClientProvider client={queryClient}>
+      <Users />
+    </QueryClientProvider>
+  );
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+function Users() {
+  // this fetches users data from the server
+  const { isLoading, error, data } = useQuery('users', fetchUsers);
+  // in the fetching state
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+  // in the isError state
+  if (error) {
+    return <span>{`An error has occurred: ${error.message}`}</span>;
+  }
+  // in the isSuccess state and we got users data
+  return (
+    <ul>
+      {data.map(user => (
+        <li key={user.id}>{`${data.name} ${data.lastName}`}</li>
+      ))}
+    </ul>
+  );
+}
+```
 
-### `npm run eject`
+## What are mutations?
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+When we want to create/update/delete data on the server, we call it mutations. So mutations are such a side effect on the server. To achieve this in React Query, we will use the `useMutation` hook.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```js
+function NewUser() {
+  const { isLoading, isSuccess, error, mutate } = useMutation(createUser);
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  if (error) {
+    return <span>{`An error has occurred: ${error.message}`}</span>;
+  }
 
-## Learn More
+  return (
+    <div>
+      {isSuccess && <span>User added successfully</span>}
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+      <button onClick={() => mutate({ name: 'Gapur', lastName: 'Kassym' })}>
+        Create User
+      </button>
+    </div>
+  );
+}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+In the example above, our `useMutation` requires a single `createUser` parameter. This is the function to create a new user.
+
+The `useMutation` returns:
+
+    - isLoading - in performing state
+    - isSuccess - if the mutation was successful
+    - error - the mutation is in the `isError` state and you can get it through the `error` property
+    - mutate - a function you can call with variables to cause a mutation
+
+# React Query Todo Example
+
+<p>
+  <img width="800"src="https://github.com/Gapur/react-native-scanner/blob/main/assets/react-native-scanner-final.png">
+</p>
+
+## How to contribute?
+
+1. Fork this repo
+2. Clone your fork
+3. Code 🤓
+4. Test your changes
+5. Submit a PR!
