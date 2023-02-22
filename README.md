@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/Gapur/react-native-scanner/blob/main/assets/example.gif" />
+  <img src="https://github.com/Gapur/react-query-todo-example/blob/main/src/assets/logo.png" />
 </p>
 
 # React Query Todo Example
@@ -96,7 +96,7 @@ The `useMutation` returns:
 # React Query Todo Example
 
 <p>
-  <img width="800"src="https://github.com/Gapur/react-native-scanner/blob/main/assets/react-native-scanner-final.png">
+  <img width="800"src="https://github.com/Gapur/react-query-todo-example/blob/main/src/assets/example.gif">
 </p>
 
 ## How to contribute?
