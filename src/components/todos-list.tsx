@@ -23,7 +23,7 @@ export function TodosList({ todos, onDelete }: TodosListProps) {
   
   return (
     <div className="empty">
-      <p>No found</p>
+      <p>Not found</p>
     </div>
   );
 }
