@@ -95,7 +95,7 @@ The `useMutation` returns:
 
 # React Query Todo Example
 
-<p>
+<p align="center">
   <img width="600"src="https://github.com/Gapur/react-query-todo-example/blob/main/src/assets/example.gif">
 </p>
 
